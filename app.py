@@ -4,7 +4,7 @@
 import re
 
 # Роздільник
-sign = '[\.|\/|\-|\.\s]'
+sign = '(\.|\/|\-|\.\s)'
 # місяці в яких 31 день
 mon_31 = '(0[13578]|[13578]|1[02])'
 day_31 = '(0[1-9]|[1-9]|[12][0-9]|3[01])'
@@ -28,11 +28,11 @@ def search_data(data, format, year_start):
     matches = format.finditer(data)
     for match in matches:
         if year_start == 'y_m_d':
-            return match.group(1), match.group(3), match.group(4)
+            return match.group(1), match.group(4), match.group(6)
         elif year_start == 'd_m_y':
-            return match.group(3), match.group(2), match.group(1)
+            return match.group(5), match.group(3), match.group(1)
         elif year_start == 'm_d_y':
-            return match.group(3), match.group(1), match.group(2)
+            return match.group(5), match.group(1), match.group(3)
 
 #  Формат для перевірки дат (д.М.рррр,д-М-рррр,д/М/рррр,дд.мм.рррр,дд-ММ-рррр,дд/ММ/рррр)
 
@@ -123,3 +123,4 @@ def main(data):
 
 for item in arr_data:
     print(main(item))
+print(year+sign+mon_31+sign+day_31)

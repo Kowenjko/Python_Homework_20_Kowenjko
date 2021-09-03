@@ -1,5 +1,9 @@
 """
 Розробіть програму, яка приймає різні формати дат, та повертає кортеж (year, month, day).
+
+Враховано кількість місяців, кількість днів в місяці + високосний рік
+Читає формати (d m Y), (Y m d), (m d Y) -цей формат розуміє коли d > 12 
+
 """
 import re
 
@@ -121,6 +125,7 @@ def main(data):
         return resultat
 
 
+rez = []
 for item in arr_data:
-    print(main(item))
-print(year+sign+mon_31+sign+day_31)
+    rez.append(main(item))
+print(rez)
